@@ -5,27 +5,39 @@ import threading
 
 
 def compute_height(n, parents):
-    # Write this function
-    tree = [[] for i in range(n)]
-    # izveidojam koku no listiem
-    for i in range(n):
-        if parents[i] == -1:
-            treeroot = i
-        tree[parents[i]].append(i)
-    # atrodam sakni
     max_height = 0
-    # Your code here
-    #height = 1
-    stack = [(treeroot, 1)]
-    while len(stack) > 0:
-        mezgls, current_height = stack.pop()
-        if current_height > max_height:
-            max_height = current_height
-        for item in range(len(parents)):
-            if parents[item] == mezgls:
-                stack.append((item, current_height + 1))
-
+    for i in range(n):
+        height = 0
+        lapa = i
+        while lapa != -1:
+            height = height + 1
+            lapa = parents[lapa]
+        if height > max_height:
+            max_height = height
+    
     return max_height
+#    # Write this function
+
+#    tree = [[] for i in range(n)]
+#    # izveidojam koku no listiem
+#    for i in range(n):
+#        if parents[i] == -1:
+#            treeroot = i
+#        tree[parents[i]].append(i)
+#    # atrodam sakni
+#    max_height = 0
+#    # Your code here
+#    #height = 1
+#    stack = [(treeroot, 1)]
+#    while len(stack) > 0:
+#        mezgls, current_height = stack.pop()
+#        if current_height > max_height:
+#            max_height = current_height
+#        for item in range(len(parents)):
+#            if parents[item] == mezgls:
+#                stack.append((item, current_height + 1))
+#
+#    return max_height
 
 
 def main():
