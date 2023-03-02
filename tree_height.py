@@ -25,7 +25,6 @@ def compute_height(n, parents):
             if parents[item] == mezgls:
                 stack.append((item, current_height + 1))
 
-    
     return max_height
 
 
