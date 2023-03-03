@@ -11,21 +11,22 @@ def compute_height(n, parents):
     for i in range(n):
         if parents[i] == -1:
             treeroot = i
-        tree[parents[i]].append(i)
+        else:
+            tree[parents[i]].append(i)
     # atrodam sakni
-    max_height = 0
-    # Your code here
-    #height = 1
-    stack = [(treeroot, 1)]
-    while len(stack) > 0:
-        mezgls, current_height = stack.pop()
-        if current_height > max_height:
-            max_height = current_height
-        for item in range(len(parents)):
-            if parents[item] == mezgls:
-                stack.append((item, current_height + 1))
+    def recursion_compute_height(mezgls):
+        if not tree[mezgls]:
+            return 1
+        # ja saknei vai mezglam nav pecteču atgriezam 1
+        else:
+            max_height = 0
+            levels = (recursion_compute_height(mezglaberns) for mezglaberns in tree[mezgls])
+            max_height = max(levels)
+            return max_height + 1
+            # atrodam pectecu augstumus
+            # atgriezam tos + 1, jo sakne vel ir limenis
 
-    return max_height
+    return recursion_compute_height(treeroot)
 
 
 def main():
